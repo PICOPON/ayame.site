@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block page-css %}
+    <link rel="stylesheet" href="/static/ayame_site/css/login.css">
+{% endblock %}
+{% block page-main %}
+        <div id="container">
+            <div id="output">
+                <div class="containerT">
+                    <h1>用户登录</h1>
+                    <form class="form" id="entry_form" action="/login/" method="post">
+                        <input type="text" class="form-control" placeholder="用户名" id="entry_name"  name="username" required>
+                        <input type="password" class="form-control" placeholder="密码" id="entry_password" name="password" required>
+                        <input type="submit" id="entry_btn" value="登录"></input>
+                        <a href="/">返回首页</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block page-js %}
+        <script src="/static/ayame_site/js/vector.js"></script>
+        <script type="text/javascript">
+        $(function(){
+            Victor("container", "output");   //登陆背景函数
+            $("#entry_name").focus();
+            $(document).keydown(function(event){
+                if(event.keyCode==13){
+                    $("#entry_btn").click();
+                }
+            });
+        });
+        </script>
+{% endblock %}

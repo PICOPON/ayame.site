@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block page-css %}
+    <link rel="stylesheet" href="/static/ayame_site/css/mv.css">
+{% endblock %}
+
+{% block page-main %}
+    <span class="title_box">MV</span>
+    <div id="mv">
+          <ul>
+              <li class="mv-line-block">
+                   <div class="mv-line-div" >
+                         {% for item in mv1 %}
+                         <div class="mv-line-item" onclick="window.open('{{ item.mv_url }}')">
+                         <div class="mv-line-item-pic">
+                             <img src="{{ item.mv_pic_url }}" alt="img_item" >
+                         </div>
+                         <span class="mv-line-item-title">{{ item.mv_title }}</span>
+                         <span class="mv-line-item-info">{{ item.mv_uptime }}</span>
+                         </div>
+                          {% endfor %}
+                    </div>
+              </li>
+              <li class="mv-line-block">
+              <div class="mv-line-div" >
+                         {% for item in mv2 %}
+                         <div class="mv-line-item" onclick="window.open('{{ item.mv_url }}')">
+                         <div class="mv-line-item-pic">
+                             <img src="{{ item.mv_pic_url }}" alt="img_item" >
+                         </div>
+                         <span class="mv-line-item-title">{{ item.mv_title }}</span>
+                         <span class="mv-line-item-info">{{ item.mv_uptime }}</span>
+                         </div>
+                          {% endfor %}
+              </div>
+              </li>
+              <li class="mv-line-block">
+                   <div class="mv-line-div" >
+                         {% for item in mv3 %}
+                         <div class="mv-line-item" onclick="window.open('{{ item.mv_url }}')">
+                         <div class="mv-line-item-pic">
+                             <img src="{{ item.mv_pic_url }}" alt="img_item" >
+                         </div>
+                         <span class="mv-line-item-title">{{ item.mv_title }}</span>
+                         <span class="mv-line-item-info">{{ item.mv_uptime }}</span>
+                         </div>
+                          {% endfor %}
+                    </div>
+              </li>
+               <li class="mv-line-block">
+                   <div class="mv-line-div" >
+                         {% for item in mv4 %}
+                         <div class="mv-line-item" onclick="window.open('{{ item.mv_url }}')">
+                         <div class="mv-line-item-pic">
+                             <img src="{{ item.mv_pic_url }}" alt="img_item" >
+                         </div>
+                         <span class="mv-line-item-title">{{ item.mv_title }}</span>
+                         <span class="mv-line-item-info">{{ item.mv_uptime }}</span>
+                         </div>
+                          {% endfor %}
+                    </div>
+              </li>
+              <li class="mv-line-block">
+                   <div class="mv-line-div" >
+                         {% for item in mv5 %}
+                         <div class="mv-line-item" onclick="window.open('{{ item.mv_url }}')">
+                             <div class="mv-line-item-pic" style="background:url(https://s2.ax1x.com/2019/09/07/nletpt.th.jpg) no-repeat center; background-size: 330px 220px;" onmouseover="this.style.backgroundSize= '1100px 330px'" onmouseleave="this.style.backgroundSize= '330px 220px'">
+                             </div>
+                         <span class="mv-line-item-title">{{ item.mv_title }}</span>
+                         <span class="mv-line-item-info">{{ item.mv_uptime }}</span>
+                         </div>
+                          {% endfor %}
+                    </div>
+              </li>
+          </ul>
+    </div>
+    <div id="pg-cg">
+        <center>
+            <ul class="pagination"></ul>
+        </center>
+    </div>
+
+{% endblock %}
+
+{% block page-js %}
+    <script type="text/javascript" src="/static/ayame_site/js/paging.js" ></script>
+    <script type="text/javascript">
+    $(function(){
+        var a={color:'red',sex:'black',border:'1px solid #ddd'};
+
+        var b={background:'white'};
+
+        $(".pagination").Paging({
+            classStyle:a,//a标签样式的对象,也可以不定义使用默认值
+            backClass:b,//选中的页数的背景，也可以不定义使用默认值
+            isFirst:true,   //首页按钮是否显示
+            isPre:true,     //下一页按钮是否显示
+            showRecordNum:15, // 一页列表数量
+            totalNum:30,   // 总列表数量
+            showNum:function(data1,data2){
+                window.location.href = "/mv/"+data1
+            }
+        });
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block page-css %}
+    <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/news.css">
+    <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/index.css">
+{% endblock %}
+
+{% block page-main %}
+    <span class="title_box">NEWS</span>
+    <div id="news-left">
+        <ul>
+            {% for blog in blogs %}
+             <li class="news-item">
+                 <span class="date">{{ blog.created_time }}</span>
+                  <span class="text">
+                        <a href="/singlenews/{{ blog.id }}/">{{ blog.title }}</a>
+                        <span>{{ blog.summary }}</span>
+                  </span>
+             </li>
+            {% endfor %}
+        <!--<li class="news-item">
+                 <span class="date">2019.09.04</span>
+                  <span class="text">
+                  <a>乃木坂46“Yoakemade Tsuyogaranakutemoii发布特别礼品......的通知</a>
+                  <span>"Yoakemade Tsuyogaranakutemoii为庆祝释放礼品规划已经确定！下面，特别礼品申请前请仔细检查大纲和申请大纲。我们正在等待许多申请。 [专题礼品..."</span>
+                  </span>
+             </li>-->
+        </ul>
+    </div>
+    <div id="news-right">
+         <span class="title_box">Agenda</span>
+    </div>
+{% endblock %}
+
+{% block page-js %}
+
+{% endblock %}

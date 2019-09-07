@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block page-css %}
+    <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/news.css">
+    <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/index.css">
+{% endblock %}
+
+{% block page-main %}
+    <span class="title_box">搜索结果</span>
+    <div id="news-left">
+        <ul>
+            {% for res in researchres %}
+             <li class="news-item">
+                 <span class="date">{{ res.created_time }}</span>
+                  <span class="text">
+                        <a href="/singlenews/{{ res.id }}/">{{ res.title }}</a>
+                        <span>{{ res.summary }}</span>
+                  </span>
+             </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="news-right">
+         <span class="title_box">日程表</span>
+    </div>
+{% endblock %}
+
+{% block page-js %}
+
+{% endblock %}

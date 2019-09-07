@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block page-css %}
+    <link  rel="stylesheet" href="/static/ayame_site/css/comment.css" />
+    <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/sinaFaceAndEffec.css" />
+{% endblock %}
+{% block page-main %}
+    <div id="content" style="width: 100%; height: auto;">
+            <div class="comment">
+                <form class="content" action="/comment/" method="post">
+                        <div class="cont-box">
+                            <textarea class="text" placeholder="请输入..." maxlength="300" required name="comment"></textarea>
+                        </div>
+                        <div class="tools-box">
+                            <!--<div class="operator-box-btn"><span class="face-icon"  >☺</span><span class="img-icon">▧</span></div>-->
+                            <div class="submit-btn"><input type="submit" value="提交评论" /></div>
+                        </div>
+                </form>
+            </div>
+
+            <div id="info-show">
+                <ul>
+                    {% for item_cmt in comments %}
+                        <li>
+                            <div class="reply-cont">
+                                <p class="username">{{ user.username }}</p>
+                                <p class="comment-body">{{item_cmt.comment}}</p>
+                                <p class="comment-footer">{{ item_cmt.comment_time }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+{% endblock %}
+{% block page-js %}
+    <script type="text/javascript" src="/static/ayame_site/js/comment.js"></script>
+    <script type="text/javascript" src="/static/ayame_site/js/sinaFaceAndEffec.js"></script>
+    <script type="text/javascript">
+	// 绑定表情
+	$('.face-icon').SinaEmotion($('.text'));
+	// 测试本地解析
+
+	function out() {
+		var inputText = $('.text').val();
+		$('#info-show ul').append(reply(AnalyticEmotion(inputText)));
+	}
+
+    </script>
+{% endblock %}

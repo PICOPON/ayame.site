@@ -1,0 +1,21 @@
+#news-left{
+    width:70%;
+    border-style: solid;
+    height:1000px;
+    float: left;
+    overflow: auto;
+}
+    #news-left ul{
+        width:100%;
+        display: block;
+        margin:0 0;
+        padding: 15px 10px;
+        border-style: solid;
+    }
+#news-right{
+    width:30%;
+    margin:0 0;
+    padding: 15px 10px;
+    border-style: solid;
+    float: left;
+}

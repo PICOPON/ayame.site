@@ -1,0 +1,119 @@
+#mv{
+    width: 100%;
+    height: 980px;
+    border-style: solid;
+}
+#mv ul{
+    padding: 0 0;
+    display: block;
+    overflow: auto;
+}
+#pg-cg{
+    border-style: solid;
+}
+@media screen and (min-width: 1800px) and (max-width: 3000px){
+    .mv-line-block{
+    margin: 5px 10px;
+    width:1180px;
+    display: block;
+    height: 180px;
+    border-style: solid;
+    }
+    .mv-line-div{
+    margin: 2px 10px;
+    padding: 0 90px;
+    width: 1150px;
+    height: 176px;
+    border-style: dashed;
+    }
+    .mv-line-item{
+      width:235px;
+      height: 172px;
+      margin: 2px 30px;
+      float:left;
+      text-align: center;
+      border-style: solid;
+      cursor:pointer;
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1800px){
+    .mv-line-block{
+    margin: 2px 5px;
+    width:960px;
+    display: block;
+    height: 180px;
+    border-style: solid;
+    }
+    .mv-line-div{
+    margin: 2px 2px;
+    width: 958px;
+    height: 176px;
+    border-style: dashed;
+    }
+    .mv-line-item{
+      width:235px;
+      height: 172px;
+      margin: 2px 1px;
+      float:left;
+      text-align: center;
+      border-style: solid;
+          cursor:pointer;
+    }
+}
+@media (max-width: 991px){
+    .mv-line-block{
+    margin-left: 20px;
+    width:910px;
+    display: block;
+    height: 180px;
+    border-style: solid;
+    }
+    .mv-line-div{
+    margin: 2px 2px;
+    width: 900px;
+    height: 176px;
+    border-style: dashed;
+    }
+     .mv-line-item{
+      width:295px;
+      height: 172px;
+      margin: 2px 1px;
+      float:left;
+      text-align: center;
+      border-style: solid;
+           cursor:pointer;
+    }
+}
+
+.mv-line-item-pic{
+    margin:0 auto;
+    width: 220px;
+    height: 116px;
+    border-style: solid;
+    overflow: hidden;
+    -webkit-transition: 0.5s;
+
+}
+.mv-line-item-pic:hover{
+    background-size: 1100px 1100px;
+}
+.mv-line-item-title{
+    width: 100%;
+    margin: 1px 0;
+    height: 30px;
+    line-height: 13px;
+    display: block;
+    border-style: solid;
+    overflow: hidden;
+    font-size: 12px;
+}
+.mv-line-item-info{
+    width: 100%;
+    line-height: 12px;
+    height: 15px;
+    display: block;
+    border-style: solid;
+    font-size: 11px;
+    overflow: hidden;
+}
+
