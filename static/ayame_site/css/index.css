@@ -2,26 +2,24 @@
     width: 100%;
     margin: 0 0;
     padding: 0 0;
-    border-style: solid;
     overflow: auto;
+    z-index: 1;
 }
 #main_body{
     margin:0 0;
     padding: 0 0;
     overflow: auto;
     width:100%;
-    border-style: solid;
 }
     #schedule{
         clear:both;
-        border-style: solid;
         width:40%;
-        height: 2000px;
+        height: auto;
+        overflow: auto;
         float:left;
     }
         #schedule #members{
             width:100%;
-            border-style: solid;
             height: auto;
         }
             .member-item{
@@ -45,8 +43,8 @@
             }
         #schedule #time_table{
             width:100%;
-            border-style: solid;
-            height: 500px;
+            height: auto;
+            overflow: auto;
         }
              #schedule #time_table h4{
                 display: block;
@@ -59,32 +57,36 @@
                  clear: both;
                  overflow: auto;
             }
+                #time_table #nowdate{
+                    height: 20px;
+                    padding: 0 1%;
+                    line-height: 20px;
+                    font-size: 18px;
+                }
                 li.time_table-item{
                     display:block;
                     overflow: auto;
                     width:100%;
-                    margin:0 0;
-                    border-style: solid;
+                    margin:3% 0;
+                    padding:0 4%;
                 }
                     .time_table-item span.date{
-                            width:40%;
+                            width:30%;
                             display: block;
                             float: left;
                         }
                     .time_table-item span.text{
-                            width:60%;
+                            width:66%;
                             display: block;
                             float: left;
                         border-style: dashed;
                         }
         #schedule #contact{
             width:100%;
-            border-style: solid;
             height: 200px;
         }
     #news{
         width:60%;
-        border-style: solid;
         float:left;
         height: 1600px;
         }

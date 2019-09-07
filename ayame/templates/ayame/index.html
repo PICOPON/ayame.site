@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block page-main %}
-    <div style="" id="slider">
+    <div id="slider">
         <div class="banner" id="b04">
             <ul>
-
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/05.jpg"  width="640" height="480" ><span class="slider-title"><em>早报</em></span></a></li>
-                <!--<li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/02.jpg"  width="640" height="480" ><span class="slider-title"><em>如果</em></span></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/03.jpg"  width="640" height="480" ><span class="slider-title"><em>启示</em></span></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/04.jpg"  width="640" height="480" ><span class="slider-title"><em>重仓</em></span></a></li>-->
+                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-1.jpg"  width="1218" height="480" ></a></li>
+                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-2.jpg"  width="1218" height="480" ></a></li>
+                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-3.jpg"  width="1218" height="480" ></a></li>
+                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-4.jpg"  width="1218" height="480" ></a></li>
+                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-5.jpg"  width="1218" height="480" ></a></li>
             </ul>
             <div class="progress"></div>
             <!--<a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="/static/ayame_site/imgs/arrowr.png" alt="prev" width="20" height="35"></a>
@@ -23,7 +23,7 @@
     <div id="main_body">
         <div id="schedule">
             <div id="members">
-                <span class="title_box">Members</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>成员简介</span></div>
                 <ul>
                     {% for member in members %}
                     <li class="member-item">
@@ -34,8 +34,9 @@
                 </ul>
             </div>
             <div id="time_table">
-                <span class="title_box">time table</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>时间表</span></div>
                 <span id="nowdate"></span>
+                <hr>
                 <ul>
                     {% for ag in agenda %}
                         <li class="time_table-item">
@@ -46,12 +47,13 @@
                 </ul>
             </div>
             <div id="contact">
-                <span class="title_box">QQ:</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>联系我们</span></div>
+                <div style="width: 100%;border-style: solid;"> QQ群</div>
             </div>
         </div>
         <div id="news">
             <div id="blogs">
-                   <span class="title_box">NEWS</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>Member</span></div>
                       {% for blog in blogs %}
                         <li class="news-item">
                          <span class="date">{{ blog.created_time }}</span>
@@ -65,10 +67,10 @@
                     <a href="/news/" style="width: 100%;text-align: center;display: block;">详细页</a>
             </div>
             <div id="weibo">
-                  <span class="title_box">weibo</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>Member</span></div>
             </div>
             <div id="bilibili">
-                  <span class="title_box">bilibili</span>
+                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>BILIBILI</span></div>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@
     <title>ayame</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/ayame_site/css/base.css" rel="stylesheet">
+    <link rel="icon" href="/static/ayame_site/imgs/favicon.bmp" type="image/x-icon">
     {% block page-css %}
     {% endblock %}
 </head>
@@ -12,7 +13,6 @@
     <div class="container-fluid">
         <div id="background-top"></div>
         <div class="row" id="base-up">
-            <div class="" ></div>
              <div class="col-md-12 column" id="NavigationBar">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
@@ -55,21 +55,19 @@
                                  <a href="/login/">登录</a>
                             </li>
                             {% endif %}
-
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
-        <hr>
         <div class="row" id="base-middle">
             {% block page-main %}
             {% endblock %}
         </div>
         <hr>
     </div>
-    <div class="col-md-12" style="border-style: solid;">
-        <div id="footer" style="border-style: solid;">
+    <div class="col-md-12">
+        <div id="footer" >
             Copyright &copy 2019 京ICP备：2313132
         </div>
     </div>

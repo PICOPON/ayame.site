@@ -2,10 +2,11 @@
 {% block page-css %}
     <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/news.css">
     <link rel="stylesheet" type="text/css" href="/static/ayame_site/css/index.css">
+    <link type="text/css" href="/static/ayame_site/css/datepicker.css" rel="stylesheet" />
 {% endblock %}
 
 {% block page-main %}
-    <span class="title_box">NEWS</span>
+    <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>详细信息</span></div>
     <div id="news-left">
         <ul>
             {% for blog in blogs %}
@@ -27,10 +28,27 @@
         </ul>
     </div>
     <div id="news-right">
-         <span class="title_box">Agenda</span>
+    <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>日历</span></div>
+            <center>
+            <div class="datepicker"></div>
+            </center>
     </div>
 {% endblock %}
 
 {% block page-js %}
+    <script type="text/javascript">
+            $(document).ready(function(){
 
+                $(".datepicker").datePicker({
+                    inline:true,
+                    selectMultiple:false
+                });
+
+                $("#datepicker").datePicker({
+                    clickInput:true
+                });
+
+            });
+    </script>
+<script type="text/javascript" src="/static/ayame_site/js/jquery.datePicker-min.js"></script>
 {% endblock %}
