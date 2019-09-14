@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog,Schedule,Comment,Mv,Member
+from .models import Blog,Schedule,Comment,Mv,Member,Info_donation,Goal
 # Register your models here.
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
@@ -13,15 +13,25 @@ class ScheduleAdmin(admin.ModelAdmin):
 
 
 @admin.register(Comment)
-class Comment(admin.ModelAdmin):
+class CommentAdmin(admin.ModelAdmin):
     list_display = ['comment_time', 'comment']
 
 
 @admin.register(Mv)
-class Comment(admin.ModelAdmin):
+class Mv(admin.ModelAdmin):
     list_display = ['mv_title', 'mv_pic_url', 'mv_url']
 
 
 @admin.register(Member)
-class Comment(admin.ModelAdmin):
+class MemberAdmin(admin.ModelAdmin):
     list_display = ['member_profile', 'member_picurl']
+
+
+@admin.register(Info_donation)
+class Info_donationAdmin(admin.ModelAdmin):
+    list_display = ['name','donated_amount','message','checked','alipay_account','qq_account','pwd', 'image' ]
+
+
+@admin.register(Goal)
+class GoalAdmin(admin.ModelAdmin):
+    list_display = ['goal']

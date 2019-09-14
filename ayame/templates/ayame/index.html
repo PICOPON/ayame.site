@@ -8,11 +8,11 @@
     <div id="slider">
         <div class="banner" id="b04">
             <ul>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-1.jpg"  width="1218" height="480" ></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-2.jpg"  width="1218" height="480" ></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-3.jpg"  width="1218" height="480" ></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-4.jpg"  width="1218" height="480" ></a></li>
-                <li class="slider-item"><a href="#"><img src="/static/ayame_site/imgs/slider-5.jpg"  width="1218" height="480" ></a></li>
+                <li class="slider-item"><img src="/static/ayame_site/imgs/mct-slider-1.jpg" ></li>
+                <li class="slider-item"><img src="https://i.postimg.cc/mDYB7SBw/slider-2.jpg" ></li>
+                <li class="slider-item"><img src="https://i.postimg.cc/rsqcjtpL/slider-3.jpg" ></li>
+                <li class="slider-item"><img src="https://i.postimg.cc/6qzKm574/slider-4.jpg" ></li>
+                <li class="slider-item"><img src="https://i.postimg.cc/c1cdHTD1/slider-5.jpg" ></li>
             </ul>
             <div class="progress"></div>
             <!--<a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="/static/ayame_site/imgs/arrowr.png" alt="prev" width="20" height="35"></a>
@@ -23,8 +23,21 @@
     <div id="main_body">
         <div id="schedule">
             <div id="members">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>成员简介</span></div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>成员简介</span></div>
                 <ul>
+                <!--
+                    <li class="member-item">
+                        <img src="/static/ayame_site/imgs/member-1.jpg">
+                        <span>member-1</span>
+                    </li>
+                    <li class="member-item">
+                        <img src="/static/ayame_site/imgs/member-2.jpg">
+                        <span>member-1</span>
+                    </li>
+                     <li class="member-item">
+                        <img src="/static/ayame_site/imgs/member-3.jpg">
+                        <span>member-1</span>
+                    </li>-->
                     {% for member in members %}
                     <li class="member-item">
                         <img src="{{ member.member_picurl }}">
@@ -34,7 +47,7 @@
                 </ul>
             </div>
             <div id="time_table">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>时间表</span></div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>时间表</span></div>
                 <span id="nowdate"></span>
                 <hr>
                 <ul>
@@ -43,34 +56,44 @@
                             <span class="date">{{ ag.date }}</span>
                             <span class="text">{{ ag.agenda }}</span>
                         </li>
+                        <hr>
                     {% endfor %}
                 </ul>
             </div>
             <div id="contact">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>联系我们</span></div>
-                <div style="width: 100%;border-style: solid;"> QQ群</div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>联系我们</span></div>
+                <div style="width: 100%;padding: 5% 20%;"><span> QQ群:689926620（咩咩姐妹团）</span></div>
             </div>
         </div>
         <div id="news">
             <div id="blogs">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>Member</span></div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>组内推送</span></div>
                       {% for blog in blogs %}
-                        <li class="news-item">
-                         <span class="date">{{ blog.created_time }}</span>
-                          <span class="text">
-                                <a href="/singlenews/{{ blog.id }}/">{{ blog.title }}</a>
-                                <span>{{ blog.summary }}</span>
-                          </span>
-                        </li>
                         <hr>
+                        <li class="news-item">
+                             <span class="date">{{ blog.created_time }}</span>
+                              <span class="text">
+                                    <a href="/singlenews/{{ blog.id }}/">{{ blog.title }}</a>
+                                    <span>{{ blog.summary }}</span>
+                              </span>
+                        </li>
                     {% endfor %}
-                    <a href="/news/" style="width: 100%;text-align: center;display: block;">详细页</a>
+                    <hr>
+                    <a href="/news/" style="width:80%;text-align: right;display: block;">>>详细页</a>
             </div>
             <div id="weibo">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>Member</span></div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>字幕组微博</span></div>
+                <div id="profile">
+                    <img src="https://i.postimg.cc/63XN6GnG/weibo.jpg">
+                </div>
+                <a href="https://weibo.com/u/6867332690?from=myfollow_all&is_all=1" style="width:80%;text-align: right;display: block;">>>转到微博</a>
             </div>
             <div id="bilibili">
-                <div class="title_box"><img src="/static/ayame_site/imgs/span-pic.jpg"><span>BILIBILI</span></div>
+                <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span>BILIBILI</span></div>
+                <div id="profile">
+                    <img src="https://i.postimg.cc/mgs3wLYy/bilibili.jpg">
+                </div>
+                <a href="https://space.bilibili.com/1920555?from=search&seid=9043630879509314567" style="width:80%;text-align: right;display: block;">>>转到B站</a>
             </div>
         </div>
     </div>

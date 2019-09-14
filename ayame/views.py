@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from ayame.models import Blog, Schedule, Comment, Mv, Member
-from django.http import Http404, HttpResponseRedirect
+from ayame.models import Blog, Schedule, Comment, Mv, Member,Info_donation,Goal
+from django.http import Http404, HttpResponseRedirect,HttpResponse
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib import messages
-import re
-import random
+from django.forms.models import model_to_dict
+import re,hashlib
+import random,datetime
+import json
+from django.core import serializers
 # Create your views here.
 
 
@@ -18,7 +21,7 @@ def index(request):
         blogs = Blog.objects.all()
         agenda = Schedule.objects.all()
         while len(member_show) <= 2:
-            rand_key = random.randint(1, 5)
+            rand_key = random.randint(1, 12)
             if rand_key in array_rand_key:
                 continue
             else:
@@ -136,11 +139,39 @@ def comment(request):
 def mv(request, pg_id):
     res_mv = []
     res_item = []
-    for i in range((int(pg_id)-1)*15+1, int(pg_id)*15+1):
-        mv_item = Mv.objects.get(pk=i)
-        res_item.append(mv_item)
-        if i % 3 ==0:
+    mv_items = Mv.objects.all()
+    rev_mvs = []
+    for mv_item in reversed(mv_items):
+        rev_mvs.append(mv_item)
+    for i in range((int(pg_id)-1)*15, int(pg_id)*15):
+        if i % 3 ==0 and i>=3:
             res_mv.append(res_item)
             res_item = []
+        res_item.append(rev_mvs[i])
+        if i == 14:
+            res_mv.append(res_item)
     return render(request, "ayame/mv.html", {"mv1": res_mv[0],"mv2":res_mv[1],"mv3":res_mv[2],"mv4":res_mv[3],"mv5":res_mv[4]})
+
+
+def pay(request):
+    try:
+        donations = Info_donation.objects.all()
+        gls = Goal.objects.all()
+        json_list = []
+        res = []
+        for dona_item in donations:
+            json_dict = model_to_dict(dona_item)
+            json_list.append(json_dict)
+        md5 = hashlib.md5()
+        md5.update(str(datetime.datetime.now()).encode())
+        hashcode= md5.hexdigest()[8:-8]
+        for gl_item in gls:
+            goal_amount = gl_item.goal
+        res.append(hashcode)
+        res.append(goal_amount)
+        res.append(json_list)
+    except:
+        return Http404("failed")
+    # return HttpResponse(, content_type="application/json")
+    return render(request, "ayame/pay.html", {"res":res})
 

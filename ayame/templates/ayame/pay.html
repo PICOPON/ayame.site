@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>&#x4e43;&#x6728;&#x5742;&#x0034;&#x0036;&#x4e0a;&#x6d77;&#x516c;&#x6f14;&#x7b52;&#x4e95;&#x5f69;&#x840c;&#x795d;&#x82b1;&#x96c6;&#x8d44;</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+        var setAyameFunds = 'setAyameFunds_' + '{{ res.0 }}';
+		window['setAyameFunds']= function(data) {return data};
+		var getAyameFunds = function (data) {
+			return setAyameFunds({
+				hashcode: '{{ res.0 }}',
+					goal: {{ res.1}},
+					details:[{% for item in res.2 %}
+                                {id:{{item.id}},
+                                name:'{{item.name}}',
+                                date:'{{item.date_time}}',
+                                donate:{{ item.donated_amount}},
+                                msg:'{{ item.message}}',
+                                checked:{{ item.checked}}
+                                },
+                    {% endfor %}]
+				});
+		}
+		$('html').css('font-size', $(window).width()/7.5+'px');
+		$(function () {
+			new Vue({
+				el: '#vue-wrap',
+				data: window.getAyameFunds(),
+
+				computed: {
+					participants: function () {
+						return this.details.sort(function (left, right) {
+							if (left.date > right.date) {
+								return -1;
+							} else if (left.date < right.date) {
+								return 1;
+							} else {
+								return 0;
+							}
+						});
+					},
+					amounts: function () {
+						let res = this.details.reduce(function (res, obj) {
+							if (obj.checked) {
+								res.checked += obj.donate;
+							}
+							res.predict += obj.donate;
+							return res;
+						}, {checked: 0, predict: 0});
+						let maximum = Math.max(this.goal, res.checked, res.predict);
+						let array = [{
+							name: 'goal',
+							amount: this.goal,
+							width: this.goal / maximum * 100,
+						}, {
+							name: 'checked',
+							amount: res.checked,
+							width: res.checked / maximum * 100,
+						}, {
+							name: 'predict',
+							amount: res.predict,
+							width: res.predict / maximum * 100,
+						}];
+						return array.sort(function (left, right) {
+							if (left.amount > right.amount) {
+								return -1;
+							} else if (left.amount < right.amount) {
+								return 1;
+							} else {
+								return 0;
+							}
+						});
+					}
+				},
+				methods: {
+					format: function (number) {
+						return number < 10? '0' + number: number;
+					},
+					getDate: function (timeStamp) {
+						let date = new Date(parseInt(timeStamp));
+						let MM = this.format(date.getMonth() + 1);
+						let dd = this.format(date.getDate());
+						// let hh = this.format(date.getHours());
+						// let mm = this.format(date.getMinutes());
+						// let ss = this.format(date.getSeconds());
+						// return `${MM}-${dd} ${hh}:${mm}:${ss}`;
+						return `${MM}-${dd}`;
+					}
+				}
+			});
+			new Vue({
+				el: '#event-plan',
+				data: {
+					folded: true
+				},
+				methods: {
+					foldChange: function () {
+						console.log(this.folded)
+						this.folded = !this.folded;
+					}
+				}
+			});
+		});
+	</script>
+	<style type="text/css">		
+		/* Properties of Window */
+		*{
+			-webkit-touch-callout: none; /* 系统默认菜单被禁用 */
+			-webkit-user-select: none; /* webkit浏览器 */
+			-khtml-user-select: none; /* 早期浏览器 */
+			-moz-user-select: none; /* 火狐 */
+			-ms-user-select: none; /* IE10 */
+			user-select: none;
+		}
+		html, body, div, h1, h2, h3, h4, h5, h6, p, ul, li, img, input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+		html, body {
+			--page-back-color: #FFF;
+			--purple: #7e1083;
+			--ayame: #bf87c1;
+			width: 100%;
+			font-size: 0;
+			background-color: var(--page-back-color);
+		}
+		ul, li {
+			font-size: 0;
+		}
+		li {
+			list-style: none;
+		}
+		input {
+			-webkit-user-select: text; /* webkit浏览器 */
+			-khtml-user-select: text; /* 早期浏览器 */
+			-moz-user-select: text; /* 火狐 */
+			-ms-user-select: text; /* IE10 */
+			user-select: text;
+		}
+		#vue-wrap {
+			position: relative;
+			width: 100%;
+			color: white;
+			background-color: black;
+		}
+		#vue-wrap .progress-bar {
+			margin-top: 0;
+			position: relative;
+			height: 3rem;
+			background-color: #000;
+		}
+		#vue-wrap .progress-bar>div {
+			position: relative;
+			left: 50%;
+			width: 5.5rem;
+			transform: translateX(-50%);
+		}
+		#vue-wrap .progress-bar>div:first-of-type {
+			top: 0.2rem;
+			font-size: 0.32rem;
+			font-weight: bold;
+			text-align: center;
+		}
+		#vue-wrap .progress-bar>div:nth-of-type(2) {
+			top: 0.6rem;
+		}
+		#vue-wrap .progress-bar>div:nth-of-type(3) {
+			top: 0.8rem;
+		}
+		#vue-wrap .progress-bar>div:last-of-type {
+			top: 0.9rem;
+			font-size: 0.24rem;
+		}
+		#vue-wrap .progress-bar .bar-wrap {
+			height: 0.3rem;
+			border: 0.02rem solid #FFF;
+			border-radius: 0.17rem;
+		}
+		#vue-wrap .progress-bar .bar {
+			position: absolute;
+			top: 0;
+			height: 0.3rem;
+			border-radius: 0.15rem;
+		}
+		#vue-wrap .progress-bar .bar:after {
+			content: '';
+			position: absolute;
+			height: 0;
+			right: 0;
+			bottom: 0.35rem;
+			transform: translateX(50%);
+			border-left: 0.05rem solid transparent;
+			border-right: 0.05rem solid transparent;
+		}
+		#vue-wrap .progress-bar .goal {
+			background-color: #FFFF00;
+		}
+		#vue-wrap .progress-bar .predict {
+			background-color: #FF0000;
+		}
+		#vue-wrap .progress-bar .checked {
+			background-color: #00FF00;
+		}
+		#vue-wrap .progress-bar .flag-wrap {
+			height: 0.28rem;
+		}
+		#vue-wrap .progress-bar .flag {
+			display: inline-block;
+			width: calc(100% / 3);
+			height: 100%;
+		}
+		#vue-wrap .progress-bar .flag span {
+			display: inline-block;
+			width: 0.24rem;
+			height: 0.24rem;
+			border: 0.02rem solid #FFF;
+			font-size: 0.24rem;
+			white-space: nowrap;
+			transform: translateX(0.2rem);
+			line-height: 0.24rem;
+		}
+		#vue-wrap .progress-bar .flag .goal::before {
+			content: '\00A0\00A0\00A0\00A0\00A0目标\00A0';
+		}
+		#vue-wrap .progress-bar .flag .checked::before {
+			content: '\00A0\00A0\00A0\00A0\00A0达成\00A0';
+		}
+		#vue-wrap .progress-bar .flag .predict::before {
+			content: '\00A0\00A0\00A0\00A0\00A0预筹\00A0';
+		}
+		#vue-wrap .bar-wrap .goal:after {
+			border-top: 0.2rem solid #FFFF00;
+		}
+		#vue-wrap .bar-wrap .predict:after {
+			border-top: 0.2rem solid #FF0000;
+		}
+		#vue-wrap .bar-wrap .checked:after {
+			border-top: 0.2rem solid #00FF00;
+		}
+		#vue-wrap .donate-list {
+			padding: 0.5rem;
+			background-color: var(--ayame);
+		}
+		#vue-wrap .donate-list div:first-of-type {
+			margin-bottom: 0.1rem;
+			font-size: 0.32rem;
+			font-weight: bold;
+			text-align: center;
+		}
+		#vue-wrap ul {
+			background-color: #000;
+		}
+		#vue-wrap ul.inner-list {
+			height: 5rem;
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+		#vue-wrap li span {
+			display: inline-block;
+			line-height: 0.4rem;
+			font-size: 0.24rem;
+			font-weight: bold;
+		}
+		#vue-wrap li span:first-of-type {
+			width: 0.8rem;
+		}
+		#vue-wrap li span:nth-of-type(2) {
+			width: 1.6rem;
+		}
+		#vue-wrap li span:nth-of-type(3) {
+			width: 0.7rem;
+		}
+		#vue-wrap li span:not(:last-of-type) {
+			text-align: center;
+		}		
+		#vue-wrap li span:last-of-type {
+			width: calc(100% - 3.2rem);
+			margin-left: 0.1rem;
+			white-space: nowrap;
+		}
+		#vue-wrap li.checked {
+			color: #FF0;
+		}
+		#vue-wrap .join-plan {			
+			margin-top: 0;
+			position: relative;
+			height: 1rem;
+			background-color: #444;
+			text-align: center;
+		}
+		#vue-wrap .join-plan a {
+			display: inline-block;
+			width: 2rem;
+			height: 0.5rem;
+			margin-top: 0.23rem;
+			font-size: 0.32rem;
+			font-weight: bold;
+			line-height: 0.48rem;
+			text-align: center;
+			background: linear-gradient(to bottom, var(--ayame) 0%, var(--purple) 30%, var(--purple) 70%, var(--ayame) 100%);
+			border: 0.02rem solid #FFF;
+			border-radius: 0.25rem;
+			color: #FFF;
+			text-decoration: none;
+			outline: 0 !important;
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+		#vue-wrap .join-plan a:active {
+			background: linear-gradient(to bottom, var(--purple), var(--purple));
+		}
+		#vue-wrap .join-plan a:last-of-type {
+			margin-left: 1rem;
+		}
+		#vue-wrap .donate-list div:last-of-type {
+			margin-top: 0.1rem;
+			font-size: 0.24rem;
+		}
+		#event-plan section {
+			position: relative;
+			width: 100%;
+			overflow-y: hidden;
+			transition: 2s ease-in-out;
+			height: 10rem;
+			font-size: 0.28rem;
+			line-height: 0.4rem;
+			color: #FFF;
+		}
+		#event-plan section::after {
+			content: '轻触展开/收起活动详情';
+			position: absolute;
+			width: 100%;
+			height: 0.4rem;
+			bottom: 0;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+		#event-plan section.folded {
+			height: 4rem;
+		}
+		/*************** For Test ***************/		
+		#event-plan section {
+			background-color: var(--ayame);
+		}
+		/*************** For Test ***************/
+	</style>
+</head>
+<body>
+	<header style="width: 100%; min-height: 1rem; background-color: var(--purple); font-size: 0.4rem; color: #FFF;">This area contains header image.</header>
+	<div id="event-plan">
+		<section :class="{ folded: folded }" @click="foldChange">
+		</section>
+	</div>
+	<div id="vue-wrap">
+		<section class="progress-bar">
+			<div>集&nbsp;资&nbsp;进&nbsp;度&nbsp;数&nbsp;据</div>
+			<div class="bar-wrap">
+				<div v-for="amount of amounts" class="bar" :class="amount.name" :style="{ width: amount.width + '%' }"></div>
+			</div>
+			<div class="flag-wrap">
+				<span class="flag" v-for="amount of amounts.reverse()">
+					<span :class="amount.name">{{ amount.amount }}</span>
+				</span>
+			</div>
+			<div class="note-text"><span>此处添加说明</span></div>
+		</section>
+		<section class="join-plan">
+			<a :href="'/pay.html#' + hashcode">我要参与</a>
+			<a href="https://www.qq.com">我的记录</a>
+		</section>
+		<section class="donate-list">
+			<div>集&nbsp;资&nbsp;明&nbsp;细&nbsp;统&nbsp;计</div>
+			<ul>
+				<li key="sheet-head">
+					<span>日期</span>
+					<span>昵称</span>
+					<span>金额</span>
+					<span>留言</span>
+				</li>
+			</ul>
+			<ul class="inner-list">
+				<li v-for="part of participants" :key="part.id" :class="{ checked: !part.checked }">
+                    {% verbatim myblock %}
+                        <span>{{ getDate(part.date) }} </span>
+                        <span>{{ part.name }}</span>
+                        <span>{{ part.donate }}</span>
+                        <span>{{ part.msg }}</span>
+                    {% endverbatim myblock %}
+				</li>
+			</ul>
+			<div><span>{{ res.0 }}</span></div>
+		</section>
+	</div>
+	<footer style="width: 100%; height: 1rem; background-color: var(--purple); font-size: 0.4rem; color: #FFF;">This area contains footer infomation.</footer>
+</body>
+</html>

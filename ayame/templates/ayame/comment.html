@@ -8,7 +8,7 @@
             <div class="comment">
                 <form class="content" action="/comment/" method="post">
                         <div class="cont-box">
-                            <textarea class="text" placeholder="请输入..." maxlength="300" required name="comment"></textarea>
+                            <textarea class="text" placeholder="请输入评论，不超过300字" maxlength="300" required name="comment"></textarea>
                         </div>
                         <div class="tools-box">
                             <!--<div class="operator-box-btn"><span class="face-icon"  >☺</span><span class="img-icon">▧</span></div>-->
@@ -16,7 +16,7 @@
                         </div>
                 </form>
             </div>
-
+        <div class="title_box"><img src="https://i.postimg.cc/43tgT17g/span-pic.jpg"><span></span></div>
             <div id="info-show">
                 <ul>
                     {% for item_cmt in comments %}
