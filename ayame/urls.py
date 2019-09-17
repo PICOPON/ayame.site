@@ -13,4 +13,6 @@ urlpatterns = [
     path('comment/', views.comment, name='comment'),
     path('pay/', views.pay, name='pay'),
     path('mv/<int:pg_id>/', views.mv, name='mv'),
+    path('join/', views.join, name='join'),
+    
 ]

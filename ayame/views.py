@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.forms.models import model_to_dict
 import re,hashlib
 import random,datetime
+from django.utils.datastructures import MultiValueDictKeyError
 import json
 from django.core import serializers
 # Create your views here.
@@ -175,3 +176,10 @@ def pay(request):
     # return HttpResponse(, content_type="application/json")
     return render(request, "ayame/pay.html", {"res":res})
 
+
+def join(request):
+    if request.method == "POST":
+
+        return HttpResponse(request.POST['hhcd'])
+    else:
+        return render(request,"ayame/join.html")
