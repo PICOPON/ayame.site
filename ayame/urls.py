@@ -11,8 +11,8 @@ urlpatterns = [
     path('register/', views.register,name='register'),
     path('search/', views.search,name='search'),
     path('comment/', views.comment, name='comment'),
-    path('pay/', views.pay, name='pay'),
+    path('donate/', views.donate, name='donate'),
     path('mv/<int:pg_id>/', views.mv, name='mv'),
     path('join/', views.join, name='join'),
-    
+    path('submit/<str:hcode>/', views.submit, name='submit')
 ]
